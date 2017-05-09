@@ -8,9 +8,10 @@ defmodule TextApi.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
-
+  
+# origin: "http://localhost:5000",
   pipeline :api do
-    plug CORSPlug, [origin: "http://localhost:5000", origin: "https://elm-docviewer.herokuapp.com/"]
+    plug CORSPlug, [origin: "https://elm-docviewer.herokuapp.com/"]
     plug :accepts, ["json"]
   end
 

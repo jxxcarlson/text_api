@@ -1,3 +1,6 @@
+
+URL: https://warm-hamlet-26117.herokuapp.com/
+
 http://www.phoenixframework.org/docs/heroku[Heroku installation]
 
 https://www.leighhalliday.com/cors-in-phoenix[CORS]
