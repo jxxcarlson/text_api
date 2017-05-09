@@ -10,6 +10,7 @@ defmodule TextApi.Router do
   end
 
   pipeline :api do
+    plug CORSPlug, [origin: "http://localhost:5000", origin: "https://elm-docviewer.herokuapp.com/"]
     plug :accepts, ["json"]
   end
 
@@ -23,6 +24,8 @@ defmodule TextApi.Router do
     pipe_through :api
     get "/documents", ApiController, :index
     get "/documents/:id", ApiController, :show
+    get "/authors", ApiController, :authorindex
+    get "/authors/:id", ApiController, :authorshow
   end
 
   # Other scopes may use custom stacks.

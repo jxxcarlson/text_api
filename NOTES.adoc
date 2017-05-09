@@ -1,0 +1,3 @@
+http://www.phoenixframework.org/docs/heroku[Heroku installation]
+
+https://www.leighhalliday.com/cors-in-phoenix[CORS]
