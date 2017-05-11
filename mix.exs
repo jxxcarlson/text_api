@@ -17,7 +17,7 @@ defmodule TextApi.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {TextApi, []},
-     extra_applications: [:logger]]
+     extra_applications: [:logger, :comeonin]]
   end
 
   # Specifies which paths to compile per environment.
@@ -36,7 +36,10 @@ defmodule TextApi.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:cors_plug, "~> 1.2"}
+     {:cors_plug, "~> 1.2"},
+     {:comeonin, "~> 2.0"},
+     {:json, "~> 1.0"},
+     {:joken, "~> 1.1"},
    ]
   end
 

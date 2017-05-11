@@ -23,10 +23,10 @@ defmodule TextApi.Router do
 
   scope "/api/v1", TextApi do
     pipe_through :api
-    get "/documents", ApiController, :index
-    get "/documents/:id", ApiController, :show
-    get "/authors", ApiController, :authorindex
-    get "/authors/:id", ApiController, :authorshow
+    get "/documents", DocumentApiController, :index
+    get "/documents/:id", DocumentApiController, :show
+    get "/authors", AuthorApiController, :index
+    get "/authors/:id", AuthorApiController, :show
   end
 
   # Other scopes may use custom stacks.
