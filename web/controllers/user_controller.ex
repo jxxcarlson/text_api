@@ -1,6 +1,6 @@
 defmodule TextApi.UserController do
 
-  @defmodule """
+  @moduledoc """
 
   API.
 
@@ -25,10 +25,6 @@ defmodule TextApi.UserController do
   plug :scrub_params, "user" when action in [:create]
 
   def create(conn, %{"user" => payload}) do
-    
-    IO.puts "=============="
-    IO.inspect payload
-    IO.puts "=============="
 
     user_params = TextApi.Utility.project2map(payload)
     # { :ok, user_params} = Poison.Parser.parse json_string

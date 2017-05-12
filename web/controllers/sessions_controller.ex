@@ -22,7 +22,7 @@ defmodule TextApi.SessionController do
         |> put_status(:unauthorized)
         |> render("error.json", user_params)
       true ->
-        dummy_checkpw
+        dummy_checkpw()
         conn
         |> put_status(:unauthorized)
         |> render("error.json", user_params)

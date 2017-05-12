@@ -19,12 +19,15 @@ defmodule TextApi.Session do
   """
   def changeset(model, params \\ :empty) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields)
+    |> validate_required([:user_id])
+    # |> cast(params, @required_fields, @optional_fields)
   end
 
   def create_changeset(model, params \\ :empty) do
     model
     |> changeset(params)
-    |> put_change(:token, SecureRandom.urlsafe_base64())
+    |> put_change(:token, TextApi.Token.get(model.user_id))
+    # |> put_change(:token, SecureRandom.urlsafe_base64())
   end
 end

@@ -4,10 +4,6 @@ defmodule TextApi.User do
   use TextApi.Web, :model
 
   use Ecto.Schema
-  import Ecto.Query
-
-  alias TextApi.Repo
-  alias TextApi.User
 
   # https://blog.codeship.com/ridiculously-fast-api-authentication-with-phoenix/
   # https://blog.codeship.com/refactoring-faster-can-spell-phoenix/
@@ -26,7 +22,8 @@ defmodule TextApi.User do
 
     def changeset(model, params \\ :empty) do
         model
-        |> cast(params, ~w(email name username), [])
+        |> cast(params, ~w(email name username))
+        |> validate_required([:email, :name, :username])
         |> validate_length(:email, min: 1, max: 255)
         |> validate_format(:email, ~r/@/)
       end
@@ -34,7 +31,7 @@ defmodule TextApi.User do
       def registration_changeset(model, params \\ :empty) do
         model
         |> changeset(params)
-        |> cast(params, ~w(password), [])
+        |> cast(params, ~w(password))
         |> validate_length(:password, min: 6)
         |> put_password_hash
       end
@@ -47,44 +44,5 @@ defmodule TextApi.User do
             changeset
         end
       end
-
-  # def change_password(user, password) do
-  #   password_hash = Comeonin.Bcrypt.hashpwsalt(password)
-  #   params = %{"password_hash" => password_hash}
-  #   changeset = password_changeset(user, params)
-  #   Repo.update(changeset)
-  # end
-  #
-  # def find_by_username(username) do
-  #   Repo.one(from u in User, where: u.username == ^username)
-  #  end
-  #
-  # def update_user(user,params) do
-  #    changeset = User.running_changeset(user, params)
-  #     Repo.update(changeset)
-  # end
-  #
-  # def set_admin(user, value) do
-  #    params = %{"admin" => value}
-  #    changeset = User.admin_changeset(user, params)
-  #    Repo.update(changeset)
-  # end
-  #
-  # def set_name(user, value) do
-  #   params = %{"name" => value}
-  #   changeset = User.changeset(user, params)
-  #   Repo.update(changeset)
-  # end
-  #
-  # def delete_by_id(id) do
-  #   user = User |> Repo.get(id)
-  #   Repo.delete!(user)
-  # end
-
-
-
-   # def apply_to_users(ff) do
-   #  User |> Repo.all |> Enum.map(fn(user) -> ff(user) end)
-   # end
 
   end
