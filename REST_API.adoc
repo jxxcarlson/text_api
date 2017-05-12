@@ -1,6 +1,60 @@
 :toc2:
 :sectnums:
 
+== Authors
+
+=== GET /api/v1/authors
+
+Return list of all authors (#this needs to be
+sorted and paginated#)
+
+----
+{
+  "authors": [
+    {
+      "url": "http://www.internal.org/Ezra_Pound",
+      "updated_at": "2017-05-08T00:08:00.111222",
+      "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/Ezra_Pound_2.jpg",
+      "name": "Ezra Pound",
+      "inserted_at": "2017-05-08T00:08:00.111222",
+      "identifier": "ezra_pound",
+      "id": 2,
+      "blurb": "From Idaho"
+    },
+    {
+      "url": "https://www.poetryfoundation.org/poems-and-poets/poets/detail/walt-whitman",
+      "updated_at": "2017-05-08T00:08:10.111222",
+      "photo_url": "https://static1.squarespace.com/static/507dba43c4aabcfd2216a447/t/52cc4d92e4b01ff2d6cbb8fb/1389120917810/Walt+Whitman.jpg",
+      "name": "Walt Whitman",
+      "inserted_at": "2017-05-08T00:08:10.111222",
+      "identifier": "walt_whitman",
+      "id": 3,
+      "blurb": "Leaves of Grass published 1855"
+    },
+  ]
+}
+----
+
+=== GET /api/v1/authors/pound
+
+Return the author record that matches `pound`  -- fuzzy,
+case insensitive search of author name
+
+----
+{
+  "author": {
+    "url": "http://www.internal.org/Ezra_Pound",
+    "updated_at": "2017-05-08T00:08:00.111222",
+    "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/Ezra_Pound_2.jpg",
+    "name": "Ezra Pound",
+    "inserted_at": "2017-05-08T00:08:00.111222",
+    "identifier": "ezra_pound",
+    "id": 2,
+    "blurb": "From Idaho"
+  }
+}
+----
+
 == Documents
 
 === GET /api/v1/documents
