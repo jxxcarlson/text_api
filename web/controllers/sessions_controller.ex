@@ -7,7 +7,8 @@ defmodule TextApi.SessionController do
   alias TextApi.User
   alias TextApi.Session
 
-  def create(conn, %{"user" => user_params}) do
+  def create(conn, %{"user" => payload}) do
+    user_params = TextApi.Utility.project2map(payload)
     user = Repo.get_by(User, email: user_params["email"])
     cond do
       user && checkpw(user_params["password"], user.password_hash) ->

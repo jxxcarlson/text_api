@@ -1,5 +1,20 @@
 # test/controllers/session_controller_test.exs
 defmodule TextApi.SessionControllerTest do
+
+  @@moduledoc """
+
+  Create Session
+  ==============
+
+  Send a request `POST /api/vi/sessions` with body like
+
+    {"email": "foo1@bar.com", "password": "s3cr3t"}
+
+  The reply is like this:
+
+    { "data": { "token": "YlplQzdqVVF2bDJyc2EyTzNTeW1iUT09" } }
+
+  """
   use TextApi.ConnCase
 
   alias TextApi.Session

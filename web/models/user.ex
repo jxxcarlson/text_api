@@ -9,6 +9,9 @@ defmodule TextApi.User do
   alias TextApi.Repo
   alias TextApi.User
 
+  # https://blog.codeship.com/ridiculously-fast-api-authentication-with-phoenix/
+  # https://blog.codeship.com/refactoring-faster-can-spell-phoenix/
+
   schema "users" do
       field :name, :string
       field :username, :string
@@ -23,7 +26,7 @@ defmodule TextApi.User do
 
     def changeset(model, params \\ :empty) do
         model
-        |> cast(params, ~w(email), [])
+        |> cast(params, ~w(email name username), [])
         |> validate_length(:email, min: 1, max: 255)
         |> validate_format(:email, ~r/@/)
       end

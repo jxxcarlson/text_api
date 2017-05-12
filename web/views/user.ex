@@ -7,7 +7,10 @@ defmodule TextApi.UserView do
 
   def render("user.json", %{user: user}) do
     %{id: user.id,
-      email: user.email}
+      name: user.name,
+      username: user.username,
+      email: user.email
+     }
   end
 end
 
