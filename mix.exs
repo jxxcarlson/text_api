@@ -40,6 +40,7 @@ defmodule TextApi.Mixfile do
      {:comeonin, "~> 2.0"},
      {:json, "~> 1.0"},
      {:joken, "~> 1.1"},
+     {:secure_random, "~> 0.2"}
    ]
   end
 

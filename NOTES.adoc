@@ -1,6 +1,16 @@
 
+
+
+GOOD AUTH SOURCE: https://blog.codeship.com/ridiculously-fast-api-authentication-with-phoenix/
+
 URL: https://warm-hamlet-26117.herokuapp.com/
 
 http://www.phoenixframework.org/docs/heroku[Heroku installation]
 
 https://www.leighhalliday.com/cors-in-phoenix[CORS]
+
+== User model and authorization
+
+https://blog.codeship.com/ridiculously-fast-api-authentication-with-phoenix/
+
+https://blog.codeship.com/refactoring-faster-can-spell-phoenix/

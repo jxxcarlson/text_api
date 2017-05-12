@@ -27,6 +27,8 @@ defmodule TextApi.Router do
     get "/documents/:id", DocumentApiController, :show
     get "/authors", AuthorApiController, :index
     get "/authors/:id", AuthorApiController, :show
+    resources "/sessions", SessionController, only: [:create]
+    resources "/users", UserController, only: [:create]
   end
 
   # Other scopes may use custom stacks.
