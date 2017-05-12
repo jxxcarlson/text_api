@@ -16,6 +16,17 @@ defmodule TextApi.Document do
     timestamps
   end
 
+  def new_document_changeset(model, params \\ :empty) do
+    model
+    |> cast(params, ~w(title text author_identifier))
+    |> validate_required([:title, :text, :author_identifier])
+  end
+
+  def changeset(model, params \\ :empty) do
+    model
+    |> cast(params, ~w(title author text identifier author_identifier))
+  end
+
   def with_author(query, author_identifier) do
     from n in query,
       where: n.author_identifier == ^author_identifier
@@ -40,7 +51,6 @@ defmodule TextApi.Document do
   end
 
   def get(id) do
-        IO.puts "1. HERE I AM!"
     cond do
       Regex.match?(~r/[1-9][0-9]*/, id) == true ->
         Repo.get(TextApi.Document, String.to_integer(id))

@@ -1,4 +1,4 @@
-defmodule TextApi.AuthorApiController do
+defmodule TextApi.AuthorController do
   use TextApi.Web, :controller
 
   alias TextApi.Author
@@ -12,12 +12,12 @@ defmodule TextApi.AuthorApiController do
     else
       authors = Author.find_by_query_string(query_string)
     end
-    json conn, authors
+    json conn, %{authors: authors}
   end
 
   def show(conn, %{"id" => id}) do
     author = Author.get(id)
-    json conn, author
+    json conn, %{author: author}
   end
 
 end

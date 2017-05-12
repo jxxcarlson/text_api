@@ -1,0 +1,120 @@
+:toc2:
+:sectnums:
+
+== Documents
+
+=== GET /api/v1/documents
+
+Return list of all documents (#this needs to be
+sorted and paginated#)
+
+----
+{
+  "documents": [
+    {
+      "updated_at": "2017-05-06T21:19:05.085975",
+      "title": "Alba",
+      "text": "As cool as the pale wet leaves ... ",
+      "inserted_at": "2017-05-06T21:19:05.028019",
+      "identifier": "alba",
+      "id": 1,
+      "author_identifier": "ezra_pound",
+      "author": "Ezra Pound"
+    },
+    {
+      "updated_at": "2017-05-06T21:20:38.836250",
+      "title": "Metro",
+      "text": "The apparition of these faces in the crowd ...",
+      "inserted_at": "2017-05-06T21:20:38.836241",
+      "identifier": "metro",
+      "id": 2,
+      "author_identifier": "ezra_pound",
+      "author": "Ezra Pound"
+    }
+  ]
+}
+----
+
+
+=== GET /api/v1/documents?author=ezra
+
+As above, but return only those documents
+satisfying the search criteria.
+
+.Examples
+- GET /api/v1/documents?title=alba
+- GET /api/v1/documents?tag=lyric
+- GET /api/v1/documents?tag=lyric&text=rose
+- GET /api/v1/documents?text=prince&text=frog
+
+
+=== GET /api/v1/documents/alba
+
+Return the document with identifier `alba`:
+
+----
+{
+  "document": {
+    "updated_at": "2017-05-06T21:19:05.085975",
+    "title": "Alba",
+    "text": "As cool as the pale wet leaves\n  ...",
+    "inserted_at": "2017-05-06T21:19:05.028019",
+    "identifier": "alba",
+    "id": 1,
+    "author_identifier": "ezra_pound",
+    "author": "Ezra Pound"
+  }
+}
+----
+
+
+== Sessions
+
+=== POST /api/v1/sessions
+
+Use this request to create a new session.
+The request body is like
+
+----
+{"email": "foo1@bar.com", "password": "s3cr3t"}
+----
+
+and the reply, which is a JWT token with the
+signed text for `user_id=ID` is like
+
+----
+{
+  "data": {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjpudWxsfQ.0ARQnEULzhli3AwOpme029GrWIZkbWcuQW-vt7TopFk"
+  }
+}
+----
+
+== Users
+
+=== POST /api/v1/users
+
+Use this request to create a new user.
+Send this in the body:
+
+----
+{
+  "email" : "jxxcarlson@gmail.com",
+  "password": "yadayada",
+  "name": "James Carlson", "
+  username": "jxxcarlson"
+ }
+----
+
+The reply is
+
+----
+{
+  "data": {
+    "username": "jxxcarlson",
+    "name": "James Carlson",
+    "id": 12,
+    "email": "jxxcarlson11@gmail.com"
+  }
+}
+----

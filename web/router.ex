@@ -23,10 +23,10 @@ defmodule TextApi.Router do
 
   scope "/api/v1", TextApi do
     pipe_through :api
-    get "/documents", DocumentApiController, :index
-    get "/documents/:id", DocumentApiController, :show
-    get "/authors", AuthorApiController, :index
-    get "/authors/:id", AuthorApiController, :show
+
+    resources "/documents", DocumentController
+    resources "/authors", AuthorController
+
     resources "/sessions", SessionController, only: [:create]
     resources "/users", UserController, only: [:create]
   end
