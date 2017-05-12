@@ -1,7 +1,7 @@
 # test/controllers/session_controller_test.exs
 defmodule TextApi.SessionControllerTest do
 
-  @@moduledoc """
+  @moduledoc """
 
   Create Session
   ==============
@@ -19,7 +19,7 @@ defmodule TextApi.SessionControllerTest do
 
   alias TextApi.Session
   alias TextApi.User
-  @valid_attrs %{email: "foo@bar.com", password: "s3cr3t"}
+  @valid_attrs %{email: "foo@bar.com", password: "s3cr3t", name: "Fred", username: "fred566"}
 
   setup %{conn: conn} do
     changeset =  User.registration_changeset(%User{}, @valid_attrs)

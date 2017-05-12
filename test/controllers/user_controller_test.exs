@@ -3,7 +3,7 @@ defmodule TextApi.UserControllerTest do
   use TextApi.ConnCase
 
   alias TextApi.User
-  @valid_attrs %{email: "foo@bar.com", password: "s3cr3t"}
+  @valid_attrs %{email: "foo@bar.com", password: "s3cr3t", name: "Fred", username: "fred566"}
   @invalid_attrs %{}
 
   setup %{conn: conn} do

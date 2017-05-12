@@ -3,7 +3,7 @@ defmodule TextApi.UserTest do
 
   alias TextApi.User
 
-  @valid_attrs %{email: "bar@baz.com", password: "s3cr3t"}
+  @valid_attrs %{email: "bar@baz.com", password: "s3cr3t", name: "Fred", username: "fred566"}
 
   test "changeset with valid attributes" do
     changeset = User.changeset(%User{}, @valid_attrs)
