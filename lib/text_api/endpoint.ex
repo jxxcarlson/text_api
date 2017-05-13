@@ -38,5 +38,8 @@ defmodule TextApi.Endpoint do
     key: "_text_api_key",
     signing_salt: "AX+msAjG"
 
+
+  # https://github.com/whatyouhide/corsica
+  plug Corsica, origins: ["http://localhost:5000", "https://elm-docviewer.herokuapp.com"]
   plug TextApi.Router
 end

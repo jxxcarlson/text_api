@@ -11,7 +11,6 @@ defmodule TextApi.Router do
 
 # origin: "http://localhost:5000",
   pipeline :api do
-    plug CORSPlug, origin: ["http://localhost:5000", "https://elm-docviewer.herokuapp.com"]
     plug :accepts, ["json"]
   end
 

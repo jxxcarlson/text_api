@@ -139,7 +139,7 @@ signed text for `user_id=ID` is like
 ----
 {
   "data": {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjpudWxsfQ.0ARQnEULzhli3AwOpme029GrWIZkbWcuQW-vt7TopFk"
+    "token": "ey9.eyJfQ.0AFk"
   }
 }
 ----
