@@ -2,6 +2,7 @@ defmodule TextApi.Token do
 
     import Joken
 
+
     @doc """
     Return a token with signed user_id and username
     """
@@ -10,9 +11,9 @@ defmodule TextApi.Token do
       # user = TextApi.Repo.get(TextApi.User, user_id)
       %{"user_id" => user_id, "username" => username}
       |> token
-      |> with_validation("user_id", &(&1 == user_id))
-      |> with_validation("username", &(&1 == username))
-      |> with_signer(hs256("yada82043mU,@izq0#$mcq^&!HFQpnp8i-nc"))
+      #|> with_validation("user_id", &(&1 == user_id))
+      #|> with_validation("username", &(&1 == username))
+      |> with_signer(hs256("yumpa80937173mU,@izq0#$mcq^&!HFQlkdfjonvueo,-+"))
       |> sign
       |> get_compact
     end
@@ -25,6 +26,13 @@ defmodule TextApi.Token do
       token
       |> token
       |> with_validation("user_id", &(&1 == user_id))
+      |> with_signer(hs256("yumpa80937173mU,@izq0#$mcq^&!HFQlkdfjonvueo,-+"))
+      |> verify
+    end
+
+    def validate(token) do
+      token
+      |> token
       |> with_signer(hs256("yumpa80937173mU,@izq0#$mcq^&!HFQlkdfjonvueo,-+"))
       |> verify
     end
