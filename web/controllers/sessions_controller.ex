@@ -10,6 +10,7 @@ defmodule TextApi.SessionController do
   def create(conn, %{"user" => payload}) do
     user_params = TextApi.Utility.project2map(payload)
     user = Repo.get_by(User, email: user_params["email"])
+    IO.puts "USER_ID for #{user.username} = #{user.id}"
     cond do
       user && checkpw(user_params["password"], user.password_hash) ->
         session_changeset = Session.create_changeset(%Session{}, %{user_id: user.id})

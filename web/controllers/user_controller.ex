@@ -41,4 +41,5 @@ defmodule TextApi.UserController do
         |> render(TextApi.ChangesetView, "error.json", changeset: changeset)
     end
   end
+
 end

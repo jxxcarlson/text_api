@@ -1,6 +1,8 @@
 defmodule TextApi.Endpoint do
   use Phoenix.Endpoint, otp_app: :text_api
 
+  import Plug.Conn
+
   socket "/socket", TextApi.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
@@ -38,8 +40,10 @@ defmodule TextApi.Endpoint do
     key: "_text_api_key",
     signing_salt: "AX+msAjG"
 
+  plug Corsica,
+    log: [rejected: :error],
+    origins: ["http://localhost:5000", "https://elm-docviewer.herokuapp.com"],
+    allow_headers: ["content-type"]
 
-  # https://github.com/whatyouhide/corsica
-  plug Corsica, origins: ["http://localhost:5000", "https://elm-docviewer.herokuapp.com"]
   plug TextApi.Router
 end

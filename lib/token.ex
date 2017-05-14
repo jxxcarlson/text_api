@@ -3,12 +3,15 @@ defmodule TextApi.Token do
     import Joken
 
     @doc """
-    Return a token with signed user_id
+    Return a token with signed user_id and username
     """
-    def get(user_id) do
-      %{"user_id" => user_id}
+    def get(user_id, username) do
+      IO.puts "USER_ID: #{user_id}"
+      # user = TextApi.Repo.get(TextApi.User, user_id)
+      %{"user_id" => user_id, "username" => username}
       |> token
       |> with_validation("user_id", &(&1 == user_id))
+      |> with_validation("username", &(&1 == username))
       |> with_signer(hs256("yada82043mU,@izq0#$mcq^&!HFQpnp8i-nc"))
       |> sign
       |> get_compact

@@ -1,6 +1,7 @@
 defmodule TextApi.Session do
   use TextApi.Web, :model
 
+
   schema "sessions" do
     field :token, :string
     belongs_to :user, TextApi.User
@@ -25,9 +26,15 @@ defmodule TextApi.Session do
   end
 
   def create_changeset(model, params \\ :empty) do
+    user_id = params.user_id
+    user = TextApi.Repo.get!(TextApi.User, user_id)
+    if user != nil do
+      username = user.username
+    else
+      username = ""
+    end
     model
     |> changeset(params)
-    |> put_change(:token, TextApi.Token.get(model.user_id))
-    # |> put_change(:token, SecureRandom.urlsafe_base64())
+    |> put_change(:token, TextApi.Token.get(user_id, username))
   end
 end
