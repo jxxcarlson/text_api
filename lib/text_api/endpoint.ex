@@ -42,7 +42,7 @@ defmodule TextApi.Endpoint do
 
   plug Corsica,
     log: [rejected: :error],
-    origins: ["http://localhost:5000", "https://elm-docviewer.herokuapp.com"],
+    origins: ["http://localhost:5000", "http://localhost:8000", "https://elm-docviewer.herokuapp.com"],
     allow_headers: ["content-type"]
 
   plug TextApi.Router

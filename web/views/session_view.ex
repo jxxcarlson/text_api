@@ -3,7 +3,8 @@ defmodule TextApi.SessionView do
   use TextApi.Web, :view
 
   def render("show.json", %{session: session}) do
-    %{data: render_one(session, TextApi.SessionView, "session.json")}
+    # %{data: render_one(session, TextApi.SessionView, "session.json")}
+    render_one(session, TextApi.SessionView, "session.json")   
   end
 
   def render("session.json", %{session: session}) do
