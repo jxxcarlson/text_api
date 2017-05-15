@@ -121,6 +121,49 @@ Return the document with identifier `alba`:
 }
 ----
 
+=== POST api/v1/documents
+
+To create a document, send a POST request to
+`api/v1/documents` with a body like:
+----
+{"document": {"title": "Magick", "text": "Don't believe it!","author_identifier": "aen"}}
+----
+The reply is like this:
+----
+"{document":
+   { "updated_at":"2017-05-15T16:17:54.271774",
+     "title":"Magick",
+     "text":"Don't believe it!",
+     "inserted_at":"2017-05-15T16:17:54.271765",
+     "identifier":null,
+     "id":18,
+     "author_identifier":"aen",
+     "author":null}
+  }
+----
+
+=== PUT api/v1/documents/:id
+
+To updated a document, send a PUT request to
+`api/v1/documents/:id` with a body like:
+----
+{"document": {"text": "It's not really true"}}
+----
+The reply is like this:
+----
+{
+  "document": {
+    "updated_at": "2017-05-15T16:32:19.637889",
+    "title": "Magick",
+    "text": "It's not really true",
+    "inserted_at": "2017-05-15T16:14:13.363069",
+    "identifier": null,
+    "id": 15,
+    "author_identifier": "aen",
+    "author": null
+  }
+}
+----
 
 == Sessions
 

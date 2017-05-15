@@ -24,15 +24,12 @@ defmodule TextApi.DocumentController do
 
   def create(conn, %{"document" => payload}) do
     document_params = TextApi.Utility.project2map(payload)
-    IO.puts "============="
-    IO.inspect document_params
-    IO.puts "============="
-    changeset = Document.create_document_changeset(Document, document_params)
+    changeset = Document.new_document_changeset(%Document{}, document_params)
     case Repo.insert(changeset) do
       {:ok, document} ->
         conn
         |> put_status(:created)
-        |> render("show.json", document: document)
+        |> json %{"document": document}
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
@@ -40,5 +37,25 @@ defmodule TextApi.DocumentController do
     end
   end
 
+  def update(conn, %{"document" => payload, "id" => id}) do
+    document_params = TextApi.Utility.project2map(payload)
+    IO.puts "============="
+    IO.inspect document_params
+    IO.puts "-----------"
+    IO.puts "ID = #{id}"
+    IO.puts "============="
+    document = Repo.get!(Document, id)
+    changeset = Document.changeset(document, document_params)
+    case Repo.update(changeset) do
+      {:ok, document} ->
+        conn
+        |> put_status(:ok)
+        |> json %{"document": document}
+      {:error, changeset} ->
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render(TextApi.ChangesetView, "error.json", changeset: changeset)
+    end
+  end
 
 end
