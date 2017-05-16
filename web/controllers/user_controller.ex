@@ -32,9 +32,13 @@ defmodule TextApi.UserController do
 
     case Repo.insert(changeset) do
       {:ok, user} ->
+        session_changeset = TextApi.Session.create_changeset(%TextApi.Session{}, %{user_id: user.id})
+        {:ok, session} = Repo.insert(session_changeset)
+#        {:ok, session} = TextApi.Session.create_session(user)
         conn
         |> put_status(:created)
-        |> render("show.json", user: user)
+       # |> render("show.json", user: user)
+        |> render("show.json", session: session)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)

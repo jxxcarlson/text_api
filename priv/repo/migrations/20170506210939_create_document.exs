@@ -5,7 +5,7 @@ defmodule TextApi.Repo.Migrations.CreateDocument do
     create table(:documents) do
       add :title, :string
       add :author, :string
-      add :text, :string
+      add :text, :text
       add :identifier, :string
 
       timestamps

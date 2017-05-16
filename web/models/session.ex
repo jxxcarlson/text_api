@@ -37,4 +37,9 @@ defmodule TextApi.Session do
     |> changeset(params)
     |> put_change(:token, TextApi.Token.get(user_id, username))
   end
+
+  def create_session(user) do
+    session_changeset = create_changeset(user, %{user_id: user.id})
+    Repo.insert(session_changeset)
+  end
 end

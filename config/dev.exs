@@ -51,6 +51,6 @@ config :text_api, TextApi.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "text_api_dev",
+  database: "text_api_dev2",
   hostname: "localhost",
   pool_size: 10

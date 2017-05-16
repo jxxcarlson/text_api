@@ -14,7 +14,8 @@ defmodule TextApi.SessionController do
     cond do
       user && checkpw(user_params["password"], user.password_hash) ->
         session_changeset = Session.create_changeset(%Session{}, %{user_id: user.id})
-        {:ok, session} = Repo.insert(session_changeset)
+       {:ok, session} = Repo.insert(session_changeset)
+#        {:ok, session} = TextApi.Session.create_session(user)
         conn
         |> put_status(:created)
         |> render("show.json", session: session)
