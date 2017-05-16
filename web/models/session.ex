@@ -1,6 +1,9 @@
 defmodule TextApi.Session do
   use TextApi.Web, :model
 
+  alias TextApi.User
+  alias TextApi.Repo
+
 
   schema "sessions" do
     field :token, :string
@@ -18,6 +21,21 @@ defmodule TextApi.Session do
   If no params are provided, an invalid changeset is returned
   with no validation performed.
   """
+
+  def find_by_token(query, token) do
+    from u in query,
+      where: u.token == ^token
+  end
+
+  def get_by_token(token) do
+    hits = TextApi.Session |> find_by_token(token) |> TextApi.Repo.all
+    if hits == [] do
+      nil
+    else
+      hd(hits)
+    end
+  end
+
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields)
@@ -36,6 +54,18 @@ defmodule TextApi.Session do
     model
     |> changeset(params)
     |> put_change(:token, TextApi.Token.get(user_id, username))
+  end
+
+  def create_changeset(model, params, token) do
+    model
+    |> changeset(params)
+    |> put_change(:token, token)
+  end
+
+ def create_changeset2(model, token) do
+    model
+    |> changeset(%{})
+    |> put_change(:token, token)
   end
 
   def create_session(user) do

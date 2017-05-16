@@ -11,7 +11,12 @@ defmodule TextApi.SessionView do
     %{token: session.token}
   end
 
-  def render("error.json", _anything) do
-    %{errors: "failed to authenticate"}
+  def render("token.json", %{token: token}) do
+    %{token: token}
+  end
+
+  def render("error.json", %{message: message}) do
+    IO.puts "ERROR 1234, message = #{message}"
+    %{error: message}
   end
 end

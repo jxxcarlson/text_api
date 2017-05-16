@@ -17,7 +17,7 @@ defmodule TextApi.UserView do
     # %{data: render_one(session, TextApi.SessionView, "session.json")}
     render_one(session, TextApi.SessionView, "session.json")
   end
-    
+
 end
 
 defmodule TextApi.ChangesetView do

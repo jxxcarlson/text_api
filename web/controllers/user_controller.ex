@@ -24,10 +24,10 @@ defmodule TextApi.UserController do
 
   plug :scrub_params, "user" when action in [:create]
 
+
   def create(conn, %{"user" => payload}) do
 
     user_params = TextApi.Utility.project2map(payload)
-    # { :ok, user_params} = Poison.Parser.parse json_string
     changeset = User.registration_changeset(%User{}, user_params)
 
     case Repo.insert(changeset) do

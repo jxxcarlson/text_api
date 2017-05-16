@@ -7,14 +7,31 @@ defmodule TextApi.SessionController do
   alias TextApi.User
   alias TextApi.Session
 
+
   def create(conn, %{"user" => payload}) do
     user_params = TextApi.Utility.project2map(payload)
     user = Repo.get_by(User, email: user_params["email"])
-    IO.puts "USER_ID for #{user.username} = #{user.id}"
     cond do
+      user == nil ->
+        conn
+          |> put_status(:created)
+          |> render("error.json", %{message: "Wrong user or password"})
       user && checkpw(user_params["password"], user.password_hash) ->
-        session_changeset = Session.create_changeset(%Session{}, %{user_id: user.id})
-       {:ok, session} = Repo.insert(session_changeset)
+        token = TextApi.Token.get(user.id, user.username)
+        result = TextApi.Session.get_by_token token
+        if result == nil do
+          # session_changeset = Session.create_changeset(%Session{}, %{user_id: user.id})
+          session_changeset = Session.create_changeset(%Session{}, %{user_id: user.id}, token)
+          {:ok, session} = Repo.insert(session_changeset)
+           conn
+           |> put_status(:created)
+           |> render("show.json", session: session)
+        else
+          IO.puts "TOKEN: #{result.token}"
+          conn
+          |> put_status(:created)
+          |> render("token.json", %{token: result.token})
+        end
 #        {:ok, session} = TextApi.Session.create_session(user)
         conn
         |> put_status(:created)
